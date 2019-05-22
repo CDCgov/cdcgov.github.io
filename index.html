@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="The Molecular Epi and Bioinformatics Team's Open Source Portfolio" />
@@ -8,136 +9,144 @@
     <meta name="msapplication-TileColor" content="#00a300" />
     <meta name="theme-color" content="#ffffff" />
     <title>FOSS @ CDC</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+        crossorigin="anonymous" />
     <style>
-      .jumbotron {
-        padding-top: 3rem;
-        padding-bottom: 3rem;
-        margin-bottom: 0;
-        background-color: #fff;
-      }
+        .jumbotron {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            margin-bottom: 0;
+            background-color: #fff;
+        }
 
-      .jumbotron p:last-child {
-        margin-bottom: 0;
-      }
+        .jumbotron p:last-child {
+            margin-bottom: 0;
+        }
 
-      .jumbotron-heading {
-        font-weight: 300;
-      }
+        .jumbotron-heading {
+            font-weight: 300;
+        }
 
-      .jumbotron .container {
-        max-width: 40rem;
-      }
+        .jumbotron .container {
+            max-width: 40rem;
+        }
 
-      main {
-        padding-top: 56px;
-      }
+        main {
+            padding-top: 56px;
+        }
 
-      .close-card {
-        position: absolute;
-        top: 10px;
-        right: 25px;
-        z-index: 1;
-      }
+        .close-card {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            z-index: 1;
+        }
 
-      .tile a {
-        color: black;
-      }
+        .tile a {
+            color: black;
+        }
 
-      footer {
-        padding-top: 3rem;
-        padding-bottom: 3rem;
-      }
+        footer {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
 
-      footer p {
-        margin-bottom: .25rem;
-      }
+        footer p {
+            margin-bottom: .25rem;
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">About</h4>
-              <p class="text-muted">Hi! We're the <a href="https://www.cdc.gov">Centers for Disease Control and Prevention</a>, better known as the CDC.<br />Here are all of our Open Source Projects on <a href="https://github.com/CDCgov">Github</a>. Check 'em out!</p>
+        <div class="collapse bg-dark" id="navbarHeader">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-md-7 py-4">
+                        <h4 class="text-white">About</h4>
+                        <p class="text-muted">Hi! We're the <a href="https://www.cdc.gov">Centers for Disease Control
+                                and Prevention</a>, better known as the CDC.<br />Here are all of our Open Source
+                            Projects on <a href="https://github.com/CDCgov">Github</a>. Check 'em out!</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="navbar fixed-top navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <strong>FOSS @ CDC</strong>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+        <div class="navbar fixed-top navbar-dark bg-dark shadow-sm">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <strong>FOSS @ CDC</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
         </div>
-      </div>
     </header>
 
     <main role="main">
 
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">Free, Open-Source Software<br />Built by <a href="https://www.cdc.gov/">CDC</a></h1>
-          <p class="lead text-muted">Tools for Managing, Visualizing, and Analyzing Public Health Data</p>
-        </div>
-      </section>
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Free, Open-Source Software<br />Built by <a
+                        href="https://www.cdc.gov/">CDC</a></h1>
+                <p class="lead text-muted">Tools for Managing, Visualizing, and Analyzing Public Health Data</p>
+            </div>
+        </section>
 
-      <div class="album py-4 bg-light">
-        <div class="container mb-4">
-          <div class="row">
-            <form class="col-md-4 form-inline">
-              <label for="technology">Show</label>
-              <select id="technology" class="custom-select ml-3 flex-fill"></select>
-            </form>
-            <form class="col-md-4 form-inline">
-              <label for="search">Search</label>
-              <input id="search" class="form-control ml-3 flex-fill"></input>
-            </form>
-            <form class="col-md-4 form-inline">
-              <label for="search">Sort</label>
-              <select id="sort" class="form-control ml-3 flex-fill">
-                <option value="created_at">Creation Date</option>
-                <option value="updated_at" selected>Last Updated</option>
-                <option value="size">Size</option>
-                <option value="open_issues">Issues</option>
-                <option value="stargazers_count">Stars</option>
-                <option value="watchers">Watchers</option>
-                <option value="forks">Forks</option>
-              </select>
-              <div class="custom-control custom-switch ml-3">
-                <input type="checkbox" class="custom-control-input" id="direction">
-                <label class="custom-control-label" for="direction"></label>
-              </div>
-            </form>
-          </div>
-        </div>
+        <div class="album py-4 bg-light">
+            <div class="container mb-4">
+                <div class="row">
+                    <form class="col-md-4 form-inline">
+                        <label for="technology">Show</label>
+                        <select id="technology" class="custom-select ml-3 flex-fill"></select>
+                    </form>
+                    <form class="col-md-4 form-inline">
+                        <label for="search">Search</label>
+                        <input id="search" class="form-control ml-3 flex-fill"></input>
+                    </form>
+                    <form class="col-md-4 form-inline">
+                        <label for="search">Sort</label>
+                        <select id="sort" class="form-control ml-3 flex-fill">
+                            <option value="created_at">Creation Date</option>
+                            <option value="updated_at" selected>Last Updated</option>
+                            <option value="size">Size</option>
+                            <option value="open_issues">Issues</option>
+                            <option value="stargazers_count">Stars</option>
+                            <option value="watchers">Watchers</option>
+                            <option value="forks">Forks</option>
+                        </select>
+                        <div class="custom-control custom-switch ml-3">
+                            <input type="checkbox" class="custom-control-input" id="direction">
+                            <label class="custom-control-label" for="direction"></label>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-        <div class="container">
-          <div id="tiles" class="row"></div>
+            <div class="container">
+                <div id="tiles" class="row"></div>
+            </div>
         </div>
-      </div>
 
     </main>
 
     <footer class="text-muted">
-      <div class="container">
-        <p class="float-right">
-          <a>Back to top</a>
-        </p>
-      </div>
+        <div class="container">
+            <p class="float-right">
+                <a>Back to top</a>
+            </p>
+        </div>
     </footer>
     <script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?flags=gated&rum=true"></script>
-    <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js">
+    </script>
     <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script crossorigin="anonymous"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 
     <script id="tile-template" type="text/template">
-      <div class="col-md-4 tile">
+        <div class="col-md-4 tile">
         <button type="button" class="close close-card" aria-label="Hide this Repo">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -171,115 +180,126 @@
     </script>
 
     <script>
+        var projectcache = [];
+        $(function () {
+            var tileMaker = _.template($('#tile-template').text());
+            var tiles = $('#tiles');
 
-    var projectcache = [];
-    $(function(){
-      var tileMaker = _.template($('#tile-template').text());
-      var tiles = $('#tiles');
-
-      fetch('projects.json').then(function(res){
-        res.json().then(function(projects){
-          projectcache = projects;
-          fetchPage(1, function(){
-            var languages = {};
-            projectcache.forEach(function(project){
-              if(project.language in languages){
-                languages[project.language]++;
-              } else {
-                languages[project.language] = 1;
-              }
+            fetch('projects.json').then(function (res) {
+                res.json().then(function (projects) {
+                    projectcache = projects;
+                    fetchPage(1, function () {
+                        var languages = {};
+                        projectcache.forEach(function (project) {
+                            if (project.language in languages) {
+                                languages[project.language]++;
+                            } else {
+                                languages[project.language] = 1;
+                            }
+                        });
+                        var options = Object.keys(languages).sort(function (a, b) {
+                            return languages[b] - languages[a];
+                        });
+                        $('#technology').html(
+                            '<option value="" selected>All (' + projectcache
+                            .length + ')</option>' +
+                            options.map(function (option) {
+                                if (option == 'null') return;
+                                return '<option value="' + option + '">' +
+                                    option + ' (' + languages[option] +
+                                    ')</option>';
+                            }).join('')
+                        );
+                        research();
+                    });
+                });
             });
-            var options = Object.keys(languages).sort(function(a, b){
-              return languages[b] - languages[a];
+
+            function fetchPage(page, cb) {
+                fetch('https://api.github.com/orgs/CDCgov/repos?type=public&sort=updated&direction=desc&page=' + page).then(
+                    function (res) {
+                        if (!res.ok) throw Error("Couldn't fetch Projects!");
+                        res.json().then(function (projects) {
+                            var n = projects.length;
+                            for (var i = 0; i < n; i++) {
+                                var project = projects[i];
+                                var match = projectcache.findIndex(function (p) {
+                                    return p.id === project.id;
+                                });
+                                if (match > -1) {
+                                    if (projectcache[match].updated_at === project.updated_at) return cb();
+                                    projectcache[match] = project;
+                                } else {
+                                    projectcache.splice(i, 0, project);
+                                }
+                            }
+                            if (projects.length === 30) fetchPage(page + 1, cb);
+                            return cb();
+                        });
+                    });
+            }
+
+            //TODO: This is a bit of a monstrosity. I'm sorry.
+            function research() {
+                var q = $('#search').val().toLowerCase();
+                var v = $('#technology').val();
+                var s = $('#sort').val();
+                var d = $('#direction').is(':checked');
+                tiles.empty();
+                projectcache.filter(function (project) {
+                    if (v !== '' && project.language !== v) return false;
+                    return project.name.toLowerCase().indexOf(q) > -1;
+                }).sort(function (a, b) {
+                    if (d) {
+                        if (typeof a[s] === 'string') {
+                            return (new Date(a[s])) - (new Date(b[s]));
+                        } else {
+                            return a[s] - b[s];
+                        }
+                    } else {
+                        if (typeof a[s] === 'string') {
+                            return (new Date(b[s])) - (new Date(a[s]));
+                        } else {
+                            return b[s] - a[s];
+                        }
+                    }
+                }).forEach(function (project) {
+                    tiles.append(tileMaker(project));
+                });
+                $('small a').on('click', function () {
+                    $('#technology').val($(this).text());
+                    research();
+                });
+                $('img').on('error', function () {
+                    $(this).css('display', 'none');
+                });
+                $('.close').on('click', function () {
+                    $(this).parent().fadeOut();
+                });
+                history.replaceState({}, '', '?s=' + s + '&q=' + q + '&v=' + v);
+            }
+
+            if (window.location.search != '') {
+                window.location.search.slice(1).split('&').forEach(function (param) {
+                    var kv = param.split('=');
+                    if (kv[0] == 's') $('#sort').val(kv[1]);
+                    if (kv[0] == 'q') $('#search').val(kv[1]);
+                    if (kv[0] == 'v') $('#technology').val(kv[1]);
+                });
+            }
+
+            $('#search').on('input', research);
+            $('#technology, #sort, #direction').on('change', research);
+
+            $('footer a').on('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
             });
-            $('#technology').html(
-              '<option value="" selected>All ('+projectcache.length+')</option>' +
-              options.map(function(option){
-                if(option == 'null') return;
-                return '<option value="'+option+'">'+option+' ('+languages[option]+')</option>';
-              }).join('')
-            );
-            research();
-          });
         });
-      });
-
-      function fetchPage(page, cb){
-        fetch('https://api.github.com/orgs/CDCgov/repos?type=public&direction=desc&page=' + page).then(function(res){
-          if(!res.ok) throw Error("Couldn't fetch Projects!");
-          res.json().then(function(projects){
-            var n = projects.length;
-            for(var i = 0; i < n; i++){
-              var project = projects[i];
-              var match = projectcache.findIndex(function(p){ return p.id === project.id; });
-              if(match > -1){
-                if(projectcache[match].updated_at === project.updated_at) return cb();
-                projectcache[match] = project;
-              } else {
-                projectcache.splice(i,0,project);
-              }
-            }
-            if(projects.length === 30) fetchPage(page+1, cb);
-          });
-        });
-      }
-
-      //TODO: This is a bit of a monstrosity. I'm sorry.
-      function research(){
-        var q = $('#search').val().toLowerCase();
-        var v = $('#technology').val();
-        var s = $('#sort').val();
-        var d = $('#direction').is(':checked');
-        tiles.empty();
-        projectcache.filter(function(project){
-          if(v !== '' && project.language !== v) return false;
-          return project.name.toLowerCase().indexOf(q) > -1;
-        }).sort(function(a, b){
-          if(d){
-            if(typeof a[s] === 'string'){
-              return (new Date(a[s])) - (new Date(b[s]));
-            } else {
-              return a[s] - b[s];
-            }
-          } else {
-            if(typeof a[s] === 'string'){
-              return (new Date(b[s])) - (new Date(a[s]));
-            } else {
-              return b[s] - a[s];
-            }
-          }
-        }).forEach(function(project){
-          tiles.append(tileMaker(project));
-        });
-        $('small a').on('click', function(){
-          $('#technology').val($(this).text());
-          research();
-        });
-        $('img').on('error', function(){
-          $(this).css('display', 'none');
-        });
-        $('.close').on('click', function(){
-          $(this).parent().fadeOut();
-        });
-        history.replaceState({}, '', '?s='+s+'&q='+q+'&v='+v);
-      }
-
-      if(window.location.search != ''){
-        window.location.search.slice(1).split('&').forEach(function(param){
-          var kv = param.split('=');
-          if(kv[0] == 's') $('#sort').val(kv[1]);
-          if(kv[0] == 'q') $('#search').val(kv[1]);
-          if(kv[0] == 'v') $('#technology').val(kv[1]);
-        });
-      }
-
-      $('#search').on('input', research);
-      $('#technology, #sort, #direction').on('change', research);
-
-      $('footer a').on('click', function(){
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-      });
-    });
     </script>
-  </body>
+</body>
+
 </html>
