@@ -216,21 +216,18 @@
             });
 
             function fetchPage(page, cb) {
-                fetch('https://api.github.com/orgs/CDCgov/repos?type=public&direction=desc&page=' + page).then(
+                fetch('https://api.github.com/orgs/CDCgov/repos?type=public&sort=updated&direction=desc&page=' + page).then(
                     function (res) {
                         if (!res.ok) throw Error("Couldn't fetch Projects!");
                         res.json().then(function (projects) {
                             var n = projects.length;
-                            console.log(n)
                             for (var i = 0; i < n; i++) {
                                 var project = projects[i];
                                 var match = projectcache.findIndex(function (p) {
                                     return p.id === project.id;
                                 });
                                 if (match > -1) {
-                                    if (projectcache[match].updated_at === project.updated_at)
-                                        //return cb();
-                                        continue;
+                                    if (projectcache[match].updated_at === project.updated_at) return cb();
                                     projectcache[match] = project;
                                 } else {
                                     projectcache.splice(i, 0, project);
