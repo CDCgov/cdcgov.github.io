@@ -210,6 +210,19 @@
                                     ')</option>';
                             }).join('')
                         );
+                        projectcache.forEach(function(project){
+                          project.div = $(tileMaker(project)).appendTo(tiles);
+                        });
+                        $('small a').on('click', function () {
+                            $('#technology').val($(this).text());
+                            research();
+                        });
+                        $('img').on('error', function () {
+                            $(this).css('display', 'none');
+                        });
+                        $('.close').on('click', function () {
+                            $(this).parent().fadeOut();
+                        });
                         research();
                     });
                 });
@@ -245,38 +258,30 @@
                 var v = $('#technology').val();
                 var s = $('#sort').val();
                 var d = $('#direction').is(':checked');
-                tiles.empty();
+                history.replaceState({}, '', '?s=' + s + '&q=' + q + '&v=' + v);
+                tiles.children().hide();
                 projectcache.filter(function (project) {
                     if (v !== '' && project.language !== v) return false;
                     return project.name.toLowerCase().indexOf(q) > -1;
                 }).sort(function (a, b) {
                     if (d) {
                         if (typeof a[s] === 'string') {
-                            return (new Date(a[s])) - (new Date(b[s]));
-                        } else {
-                            return a[s] - b[s];
-                        }
-                    } else {
-                        if (typeof a[s] === 'string') {
                             return (new Date(b[s])) - (new Date(a[s]));
                         } else {
                             return b[s] - a[s];
                         }
+                    } else {
+                        if (typeof a[s] === 'string') {
+                            return (new Date(a[s])) - (new Date(b[s]));
+                        } else {
+                            return a[s] - b[s];
+                        }
                     }
                 }).forEach(function (project) {
-                    tiles.append(tileMaker(project));
+                    project.div.detach();
+                    tiles.prepend(project.div);
+                    project.div.show();
                 });
-                $('small a').on('click', function () {
-                    $('#technology').val($(this).text());
-                    research();
-                });
-                $('img').on('error', function () {
-                    $(this).css('display', 'none');
-                });
-                $('.close').on('click', function () {
-                    $(this).parent().fadeOut();
-                });
-                history.replaceState({}, '', '?s=' + s + '&q=' + q + '&v=' + v);
             }
 
             if (window.location.search != '') {
