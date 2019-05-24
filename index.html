@@ -29,7 +29,7 @@
     max-width: 40rem;
   }
 
-  main {
+  #main {
     padding-top: 56px;
   }
 
@@ -44,45 +44,43 @@
     color: black;
   }
 
-  footer {
+  #footer {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
 
-  footer p {
+  #footer p {
     margin-bottom: .25rem;
   }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="collapse bg-dark" id="navbarHeader">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 col-md-7 py-4">
-            <h4 class="text-white">About</h4>
-            <p class="text-muted">Hi! We're the <a href="https://www.cdc.gov">Centers for Disease Control
-              and Prevention</a>, better known as the CDC.<br />Here are all of our Open Source
-              Projects on <a href="https://github.com/CDCgov">Github</a>. Check 'em out!</p>
-            </div>
+  <div class="collapse bg-dark fixed-top" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">About</h4>
+          <p class="text-muted">
+            Hi! We're the <a href="https://www.cdc.gov">Centers for Disease Control and Prevention</a>, better known as the CDC.<br />
+            Here are all of our Open Source Projects on <a href="https://github.com/CDCgov">Github</a>. Check 'em out!</p>
           </div>
         </div>
       </div>
-      <div class="navbar fixed-top navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <strong>FOSS @ CDC</strong>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
-          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
     </div>
-  </header>
+    <div class="navbar fixed-top navbar-dark bg-dark shadow-sm">
+      <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <strong>FOSS @ CDC</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+        aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
 
-  <main role="main">
+  <div id="main">
 
     <section class="jumbotron text-center">
       <div class="container">
@@ -127,15 +125,15 @@
       </div>
     </div>
 
-  </main>
+  </div>
 
-  <footer class="text-muted">
+  <div id="footer" class="text-muted">
     <div class="container">
       <p class="float-right">
-        <a>Back to top</a>
+        <a href="#">Back to top</a>
       </p>
     </div>
-  </footer>
+  </div>
   <script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?flags=gated&rum=true"></script>
   <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
   <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -181,67 +179,62 @@
     var tileMaker = _.template($('#tile-template').text());
     var tiles = $('#tiles');
 
-    fetch('projects.json').then(function (res) {
-      res.json().then(function (projects) {
-        projectcache = projects;
-        fetchPage(1, function () {
-          var languages = {};
-          projectcache.forEach(function (project) {
-            if (project.language in languages) {
-              languages[project.language]++;
-            } else {
-              languages[project.language] = 1;
-            }
-          });
-          var options = Object.keys(languages).sort(function (a, b) {
-            return languages[b] - languages[a];
-          });
-          $('#technology').html(
-            '<option value="" selected>All (' + projectcache.length + ')</option>' +
-            options.map(function (option) {
-              if (option == 'null') return;
-              return '<option value="' + option + '">' + option + ' (' + languages[option] + ')</option>';
-            }).join('')
-          );
-          projectcache.forEach(function(project){
-            project.div = $(tileMaker(project)).appendTo(tiles);
-          });
-          $('small a').on('click', function () {
-            $('#technology').val($(this).text());
-            research();
-          });
-          $('img').on('error', function () {
-            $(this).css('display', 'none');
-          });
-          $('.close').on('click', function () {
-            $(this).parent().fadeOut();
-          });
+    $.getJSON('projects.json', function (projects) {
+      projectcache = projects;
+      fetchPage(1, function () {
+        var languages = {};
+        projectcache.forEach(function (project) {
+          if (project.language in languages) {
+            languages[project.language]++;
+          } else {
+            languages[project.language] = 1;
+          }
+        });
+        var options = Object.keys(languages).sort(function (a, b) {
+          return languages[b] - languages[a];
+        });
+        $('#technology').html(
+          '<option value="" selected>All (' + projectcache.length + ')</option>' +
+          options.map(function (option) {
+            if (option == 'null') return;
+            return '<option value="' + option + '">' + option + ' (' + languages[option] + ')</option>';
+          }).join('')
+        );
+        projectcache.forEach(function(project){
+          project.div = $(tileMaker(project)).appendTo(tiles);
+        });
+        $('small a').on('click', function () {
+          $('#technology').val($(this).text());
           research();
         });
+        $('img').on('error', function () {
+          $(this).css('display', 'none');
+        });
+        $('.close').on('click', function () {
+          $(this).parent().fadeOut();
+        });
+        research();
       });
     });
 
     function fetchPage(page, cb) {
-      fetch('https://api.github.com/orgs/CDCgov/repos?type=public&sort=updated&direction=desc&page=' + page).then(
-        function (res) {
-          if (!res.ok) throw Error("Couldn't fetch Projects!");
-          res.json().then(function (projects) {
-            var n = projects.length;
-            for (var i = 0; i < n; i++) {
-              var project = projects[i];
-              var match = projectcache.findIndex(function (p) {
-                return p.id === project.id;
-              });
-              if (match > -1) {
-                if (projectcache[match].updated_at === project.updated_at) return cb();
-                projectcache[match] = project;
-              } else {
-                projectcache.splice(i, 0, project);
-              }
+      $.getJSON('https://api.github.com/orgs/CDCgov/repos?type=public&sort=updated&direction=desc&page=' + page,
+        function (projects) {
+          var n = projects.length;
+          for (var i = 0; i < n; i++) {
+            var project = projects[i];
+            var match = projectcache.findIndex(function (p) {
+              return p.id === project.id;
+            });
+            if (match > -1) {
+              if (projectcache[match].updated_at === project.updated_at) return cb();
+              projectcache[match] = project;
+            } else {
+              projectcache.splice(i, 0, project);
             }
-            if (projects.length === 30) fetchPage(page + 1, cb);
-            return cb();
-          });
+          }
+          if (projects.length === 30) fetchPage(page + 1, cb);
+          return cb();
         });
       }
 
@@ -293,13 +286,6 @@
       $('#search').on('input', research);
       $('#technology, #sort, #direction').on('change', research);
 
-      $('footer a').on('click', function () {
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: 'smooth'
-        });
-      });
     });
     </script>
   </body>
