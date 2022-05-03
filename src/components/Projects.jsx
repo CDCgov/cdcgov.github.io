@@ -7,12 +7,9 @@ import { useState, useEffect, useMemo } from 'react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { Combobox } from '@headlessui/react';
 
+console.clear();
 const Projects = () => {
-	const projectObject = [
-		{ id: 1, projectName: '' },
-		{ id: 2, projectName: '' },
-		{ id: 3, projectName: '' },
-	];
+	const projectObject = [{ id: 1, projectName: '' }];
 
 	const [projects, setProjects] = useState([]);
 	const [errorMessage, setErrorMessage] = useState(null);
@@ -45,47 +42,46 @@ const Projects = () => {
 			);
 	}, [endpoints]);
 
-	// for (let i = 0; i < projects.length; i++) {
-	// 	while (projectObject.id.length < projects.length) {
-	// 		projectObject.id = `${i}`;
-	// 	}
-	// }
+	let propId = Object.getOwnPropertyNames(projectObject);
 
-	// console.log(projects.length, 'Length of project');
-
-	console.log(JSON.stringify(projectObject.id, 'projectObjectIDLength'));
-
-	// Search feature. TODO: Separate the search component into another file, for easier maintenance.
-
+	for (let i = 0; i < projects.length; i++) {
+		if (propId.length < projects.length) {
+			projectObject.unshift({
+				id: i,
+				projectName: projects[i].name,
+				projectLang: projects[i].language,
+			});
+		}
+	}
+	
+	// TODO: Separate the search component into another file, for easier maintenance.
 	function classNames(...classes) {
 		return classes.filter(Boolean).join(' ');
 	}
-
-	// const filteredprojectObject =
-	// 	query === ''
-	// 		? projectObject.projectName
-	// 		: projectObject.projectName.filter((projectObject) => {
-	// 				return projectObject.toLowerCase().includes(query.toLowerCase());
-	// 		  });
-
-	// console.log(projectObject);
+	
+	const filteredProjectObject =
+		query === '' ?
+		projectObject :
+		projectObject.filter((projectObject) => {
+			return projectObject.projectName.toLowerCase().includes(query.toLowerCase());
+		});
 
 	return (
 		<div className='projects'>
 			{errorMessage !== null && <RateLimit />}
-
 			{/* Search Component */}
-			{/* <Combobox
+			<Combobox
 				as='div'
 				value={selectedProject}
 				onChange={setSelectedProject}
 				className='md:container md:max-w-screen-xl md:mx-auto'
 			>
-				<Combobox.Label className='block text-sm font-medium text-gray-700'>Assigned to</Combobox.Label>
+				<Combobox.Label className='block text-sm font-medium text-gray-700'>Search by Project Name:</Combobox.Label>
 				<div className='relative mt-1'>
 					<Combobox.Input
 						className='w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'
 						onChange={(event) => setQuery(event.target.value)}
+						displayValue={(projectObject) => projectObject.projectName}
 					/>
 					<Combobox.Button className='absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none'>
 						<SelectorIcon className='h-5 w-5 text-gray-400' aria-hidden='true' />
@@ -93,10 +89,10 @@ const Projects = () => {
 
 					{filteredProjectObject.length > 0 && (
 						<Combobox.Options className='absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
-							{filteredProjectObject.map((project) => (
+							{filteredProjectObject.map((projectObject) => (
 								<Combobox.Option
-									key={project.id}
-									value={project}
+									key={projectObject.id}
+									value={projectObject}
 									className={({ active }) =>
 										classNames(
 											'relative cursor-default select-none py-2 pl-3 pr-9',
@@ -106,7 +102,9 @@ const Projects = () => {
 								>
 									{({ active, selected }) => (
 										<>
-											<span className={classNames('block truncate', selected && 'font-semibold')}>{project.id}</span>
+											<span className={classNames('block truncate', selected && 'font-semibold')}>
+												{projectObject.projectName}
+											</span>
 
 											{selected && (
 												<span
@@ -125,9 +123,8 @@ const Projects = () => {
 						</Combobox.Options>
 					)}
 				</div>
-			</Combobox> */}
+			</Combobox>
 			{/* Search Component End */}
-
 			<div className='relative bg-white pt-5 pb-20 px-4 sm:px-6 lg:pt-8 lg:pb-28 lg:px-8'>
 				<div className='absolute inset-0'>
 					<div className='h-1/3 sm:h-2/3' />
