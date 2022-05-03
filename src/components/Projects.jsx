@@ -9,7 +9,10 @@ import { Combobox } from '@headlessui/react';
 
 console.clear();
 const Projects = () => {
-	const projectObject = [{ id: 1, projectName: '' }];
+	let apiData = [
+		{ id: 1, projectName: '' },
+		{ id: 2, projectName: '' },
+	];
 
 	const [projects, setProjects] = useState([]);
 	const [errorMessage, setErrorMessage] = useState(null);
@@ -42,29 +45,29 @@ const Projects = () => {
 			);
 	}, [endpoints]);
 
-	let propId = Object.getOwnPropertyNames(projectObject);
+	let propId = Object.getOwnPropertyNames(apiData);
 
 	for (let i = 0; i < projects.length; i++) {
 		if (propId.length < projects.length) {
-			projectObject.unshift({
+			apiData.unshift({
 				id: i,
 				projectName: projects[i].name,
 				projectLang: projects[i].language,
 			});
 		}
 	}
-	
+
 	// TODO: Separate the search component into another file, for easier maintenance.
 	function classNames(...classes) {
 		return classes.filter(Boolean).join(' ');
 	}
-	
-	const filteredProjectObject =
-		query === '' ?
-		projectObject :
-		projectObject.filter((projectObject) => {
-			return projectObject.projectName.toLowerCase().includes(query.toLowerCase());
-		});
+
+	const filterApiData =
+		query === ''
+			? apiData
+			: apiData.filter((projectData) => {
+					return projectData.projectName.toLowerCase().includes(query.toLowerCase());
+			  });
 
 	return (
 		<div className='projects'>
@@ -81,18 +84,19 @@ const Projects = () => {
 					<Combobox.Input
 						className='w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'
 						onChange={(event) => setQuery(event.target.value)}
-						displayValue={(projectObject) => projectObject.projectName}
+						placeholder='Search'
 					/>
+
 					<Combobox.Button className='absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none'>
 						<SelectorIcon className='h-5 w-5 text-gray-400' aria-hidden='true' />
 					</Combobox.Button>
 
-					{filteredProjectObject.length > 0 && (
+					{filterApiData.length > 0 && (
 						<Combobox.Options className='absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
-							{filteredProjectObject.map((projectObject) => (
+							{filterApiData.map((projectData) => (
 								<Combobox.Option
-									key={projectObject.id}
-									value={projectObject}
+									key={projectData.id}
+									value={projectData}
 									className={({ active }) =>
 										classNames(
 											'relative cursor-default select-none py-2 pl-3 pr-9',
@@ -100,11 +104,9 @@ const Projects = () => {
 										)
 									}
 								>
-									{({ active, selected }) => (
+									{({ active, selected, test }) => (
 										<>
-											<span className={classNames('block truncate', selected && 'font-semibold')}>
-												{projectObject.projectName}
-											</span>
+											<span className={classNames('block truncate', selected && 'font-semibold')}>{projectData.projectName}</span>
 
 											{selected && (
 												<span
