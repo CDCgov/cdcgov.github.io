@@ -66,11 +66,11 @@ const Projects = () => {
 		query === ''
 			? apiData
 			: apiData.filter((projectData) => {
-					return projectData.projectName.toLowerCase().includes(query.toLowerCase());
+					return JSON.stringify(projectData.projectName.toLowerCase().includes(query.toLowerCase()));
 			  });
 
 	return (
-		<div className='projects'>
+		<div className='projects bg-slate-900'>
 			{errorMessage !== null && <RateLimit />}
 			{/* Search Component */}
 			<Combobox
@@ -79,12 +79,13 @@ const Projects = () => {
 				onChange={setSelectedProject}
 				className='md:container md:max-w-screen-xl md:mx-auto'
 			>
-				<Combobox.Label className='block text-sm font-medium text-gray-700'>Search by Project Name:</Combobox.Label>
+				<Combobox.Label className='block text-sm font-medium text-gray-300'>Search by Project Name:</Combobox.Label>
 				<div className='relative mt-1'>
 					<Combobox.Input
 						className='w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'
 						onChange={(event) => setQuery(event.target.value)}
 						placeholder='Search'
+						displayValue={(projectData) => projectData && projectData.projectName}
 					/>
 
 					<Combobox.Button className='absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none'>
@@ -104,7 +105,7 @@ const Projects = () => {
 										)
 									}
 								>
-									{({ active, selected, test }) => (
+									{({ active, selected }) => (
 										<>
 											<span className={classNames('block truncate', selected && 'font-semibold')}>{projectData.projectName}</span>
 
@@ -127,15 +128,16 @@ const Projects = () => {
 				</div>
 			</Combobox>
 			{/* Search Component End */}
-			<div className='relative bg-white pt-5 pb-20 px-4 sm:px-6 lg:pt-8 lg:pb-28 lg:px-8'>
+			<div className='relative bg-slate-900 pt-5 pb-20 px-4 sm:px-6 lg:pt-8 lg:pb-28 lg:px-8'>
 				<div className='absolute inset-0'>
 					<div className='h-1/3 sm:h-2/3' />
 				</div>
 				<div className='relative max-w-7xl mx-auto'>
-					<div className='mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none'>
+					<div className='mt-10 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none'>
+						{/* Card Section Start */}
 						{projects.map((project) => (
 							<div key={project.id} className='flex flex-col rounded-lg shadow-lg overflow-hidden'>
-								<div className='flex-1 bg-white p-6 flex flex-col justify-between'>
+								<div className='flex-1 bg-gray-50 p-6 flex flex-col justify-between'>
 									<div className='flex-1'>
 										<p className='text-sm font-medium text-blue-700'>{project.language}</p>
 										<a href={project.html_url} target='_blank' rel='noreferrer noopener' className='hover:underline'>
