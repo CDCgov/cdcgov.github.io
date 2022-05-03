@@ -66,7 +66,7 @@ const Projects = () => {
 		query === ''
 			? apiData
 			: apiData.filter((projectData) => {
-					return JSON.stringify(projectData.projectName.toLowerCase().includes(query.toLowerCase()));
+					return projectData.projectName.toLowerCase().includes(query.toLowerCase());
 			  });
 
 	return (
