@@ -14,21 +14,31 @@ const Projects = () => {
 
 	const [query, setQuery] = useState('');
 	const [selectedProject, setSelectedProject] = useState();
-  
+
+	const endpoints = useMemo(
+		() => [
+			'https://api.github.com/users/CDCGov/repos?page=1&per_page=100',
+			'https://api.github.com/users/CDCGov/repos?page=2&per_page=100',
+			'https://api.github.com/users/CDCGov/repos?page=3&per_page=100',
+			'https://api.github.com/users/CDCGov/repos?page=4&per_page=100',
+		],
+		[],
+	);
+
+	axios.all(endpoints.map((endpoint) => axios.get(endpoint)));
 
 	useEffect(() => {
-		const page = [1, 2, 3, 4];
 		axios
-			.all(page.map((page) => axios.get(`https://api.github.com/users/CDCGov/repos?page=${page}&per_page=100`)))
+			.all(endpoints.map((endpoint) => axios.get(endpoint)))
 			.catch((error) => {
 				setErrorMessage(error);
 			})
 			.then(
 				axios.spread((...responses) => {
-					setProjects(...responses.map((response) => response.data));
+					setProjects([...responses[0].data, ...responses[1].data, ...responses[2].data, ...responses[3].data]);
 				}),
 			);
-	}, []);
+	}, [endpoints]);
 
 	const searchText = (event) => {
 		setQuery(event.target.value);
@@ -59,7 +69,9 @@ const Projects = () => {
 				className='md:container md:max-w-screen-xl md:mx-auto'
 			>
 				<Combobox.Label className='block text-sm font-medium text-gray-700'>Search by Project Name:</Combobox.Label>
-				<p className='text-sm font-medium text-gray-700'></p>
+				<p className='text-sm font-medium text-gray-700'>
+					Total Projects: <span>{projects.length}</span>
+				</p>
 				<div className='relative mt-1'>
 					<Combobox.Input
 						className='w-full rounded-md border border-gray-400 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'
