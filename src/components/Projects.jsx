@@ -1,6 +1,8 @@
-// FEATURE: Jordon: Retrieve API data, and throw into a database for x time before expire, or sessionStorageCache, to prevent client rate limiting?
+// FEATURE: Jordon: Retrieve API data, and throw into a database for x time before expire, or sessionStorageCache, to prevent an IP rate limit from the API?
 // TODO: Jordon: Make a proper response.status === 403. Alerting the user of limit via RateLimit Component.
-// TODO: Retrieve Data and if check, convert: const date = new Date(Date.UTC(2020, 11, 20, 3, 23, 16, 738));
+// TODO: Jordon: Convert date format from api into something like: (Jan 17th, 2019);
+// TODO: Jordon: Filterable by Alphabetical, Watchers, size, forks, etc.
+// Suggestion, Jordon: Images for projects are a bit redundant? Consumes data, slows client?
 import axios from 'axios';
 import RateLimit from './rateLimit';
 import { useState, useEffect, useMemo } from 'react';
@@ -15,6 +17,7 @@ const Projects = () => {
 	const [query, setQuery] = useState('');
 	const [selectedProject, setSelectedProject] = useState();
 
+	// TODO: Jordon: Fix redundant URL's.
 	const endpoints = useMemo(
 		() => [
 			'https://api.github.com/users/CDCGov/repos?page=1&per_page=100',
@@ -35,14 +38,11 @@ const Projects = () => {
 			})
 			.then(
 				axios.spread((...responses) => {
+					// TODO: Jordon: Fix redundancy.
 					setProjects([...responses[0].data, ...responses[1].data, ...responses[2].data, ...responses[3].data]);
 				}),
 			);
 	}, [endpoints]);
-
-	const searchText = (event) => {
-		setQuery(event.target.value);
-	};
 
 	const filterApiData = !query
 		? projects
@@ -53,6 +53,14 @@ const Projects = () => {
 	let projectSearch = projects.filter((item) => {
 		return item.name.toLowerCase().includes(query.toLowerCase());
 	});
+
+	const searchText = (event) => {
+		setQuery(event.target.value);
+	};
+
+	const searchOnClick = (projects) => {
+		setQuery(projects.name);
+	};
 
 	function classNames(...classes) {
 		return classes.filter(Boolean).join(' ');
@@ -89,6 +97,7 @@ const Projects = () => {
 								<Combobox.Option
 									key={projects.id}
 									value={projects}
+									onClick={searchOnClick.bind(this, projects)}
 									className={({ active }) =>
 										classNames(
 											'relative cursor-default select-none py-2 pl-3 pr-9',
@@ -125,12 +134,12 @@ const Projects = () => {
 				<div className='relative max-w-7xl mx-auto'>
 					<div className='mt-10 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none'>
 						{/* Card Section Start */}
-						{projectSearch.map((item, index) => (
+						{projectSearch.map((item) => (
 							<div key={item.id} data='' className='flex flex-col rounded-lg shadow-lg overflow-hidden'>
 								<div className='flex-1 bg-gray-50 p-6 flex flex-col justify-between'>
 									<div className='flex-1'>
 										<p className='text-sm font-medium text-blue-600'>{item.language}</p>
-										<a href={item.html_url} target='_blank' rel='noreferrer noopener' className='hover:underline'>
+										<a href={item.commits_url} target='_blank' rel='noreferrer noopener' className='hover:underline'>
 											<p className='text-xl font-semibold text-gray-900'>{item.name}</p>
 										</a>
 										<p className='mt-3 text-base text-gray-600'>{item.description}</p>
