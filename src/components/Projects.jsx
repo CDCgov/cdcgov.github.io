@@ -1,8 +1,9 @@
 // FEATURE: Jordon: Retrieve API data, and throw into a database for x time before expire, or sessionStorageCache, to prevent an IP rate limit from the API?
-// TODO: Jordon: Make a proper response.status === 403. Alerting the user of limit via RateLimit Component.
+// TODO: Jordon: Make a proper response.status === 403. Alerting the user of limit via RateLimit Component. Loading screen while waiting for response.
 // TODO: Jordon: Convert date format from api into something like: (Jan 17th, 2019);
 // TODO: Jordon: Filterable by Alphabetical, Watchers, size, forks, etc.
 // Suggestion, Jordon: Images for projects are a bit redundant? Consumes data, slows client?
+// TODO: Jordon: NextJS SSR, Static Site Generation.
 import axios from 'axios';
 import RateLimit from './rateLimit';
 import { useState, useEffect, useMemo } from 'react';
@@ -50,8 +51,8 @@ const Projects = () => {
 				return projects.name.toLowerCase().includes(query.toLowerCase());
 		  });
 
-	let projectSearch = projects.filter((item) => {
-		return item.name.toLowerCase().includes(query.toLowerCase());
+	let projectSearch = projects.filter((projectItem) => {
+		return projectItem.name.toLowerCase().includes(query.toLowerCase());
 	});
 
 	const searchText = (event) => {
@@ -88,7 +89,7 @@ const Projects = () => {
 						displayValue={(projects) => projects && projects.name}
 					/>
 
-					<Combobox.Button className='absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none'>
+					<Combobox.Button className='absolute inset-y-0 right-0 flex projectItems-center rounded-r-md px-2 focus:outline-none'>
 						<SelectorIcon className='h-5 w-5 text-gray-400' aria-hidden='true' />
 					</Combobox.Button>
 					{filterApiData.length > 0 && (
@@ -111,7 +112,7 @@ const Projects = () => {
 											{selected && (
 												<span
 													className={classNames(
-														'absolute inset-y-0 right-0 flex items-center pr-4',
+														'absolute inset-y-0 right-0 flex projectItems-center pr-4',
 														active ? 'text-black' : 'text-blue-600',
 													)}
 												>
@@ -134,27 +135,23 @@ const Projects = () => {
 				<div className='relative max-w-7xl mx-auto'>
 					<div className='mt-10 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none'>
 						{/* Card Section Start */}
-						{projectSearch.map((item) => (
-							<div key={item.id} data='' className='flex flex-col rounded-lg shadow-lg overflow-hidden'>
+						{projectSearch.map((projectItem) => (
+							<div key={projectItem.id} data='' className='flex flex-col rounded-lg shadow-lg overflow-hidden'>
 								<div className='flex-1 bg-gray-50 p-6 flex flex-col justify-between'>
 									<div className='flex-1'>
-										<p className='text-sm font-medium text-blue-600'>{item.language}</p>
-										<a href={item.commits_url} target='_blank' rel='noreferrer noopener' className='hover:underline'>
-											<p className='text-xl font-semibold text-gray-900'>{item.name}</p>
+										<p className='text-sm font-medium text-blue-600'>{projectItem.language}</p>
+										<a href={projectItem.html_url} target='_blank' rel='noreferrer noopener' className='hover:underline'>
+											<p className='text-xl font-semibold text-gray-900'>{projectItem.name}</p>
 										</a>
-										<p className='mt-3 text-base text-gray-600'>{item.description}</p>
+										<p className='mt-3 text-base text-gray-600'>{projectItem.description}</p>
 									</div>
-									<div className='mt-6 flex items-center'>
+									<div className='mt-6 flex projectItems-center'>
 										<div className='ml-3'>
-											<p className='text-sm font-medium text-gray-800'>
-												<a href={item.language} className='hover:underline'>
-													{item.full_name}
-												</a>
-											</p>
+											<p className='text-sm font-medium text-gray-800'>{projectItem.full_name}</p>
 											<div className='flex space-x-1 text-sm text-gray-500'>
-												<p>{item.created_at}</p>
+												<p>{projectItem.created_at}</p>
 												<span aria-hidden='true'> </span>
-												<a href={item.html_url} target='_blank' rel='noreferrer noopener' className='text-black'>
+												<a href={projectItem.html_url} target='_blank' rel='noreferrer noopener' className='text-black'>
 													View Code
 												</a>
 											</div>
