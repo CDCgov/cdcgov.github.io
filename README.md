@@ -1,15 +1,6 @@
 # CDCgov.github.io
 
-This repository was created for use by CDC programs to collaborate on public health surveillance related projects in support of the CDC Surveillance Strategy.  Github is not hosted by the CDC, but is used by CDC and its partners to share information and collaborate on software.
-
-## To add an image to your entry...
-
-1. Fork this repository.
-2. Create a logo or image for your project. Name it exactly the same name as your repository name (case sensitive!). Put it in the `imgs/` directory.
-3. Commit and push your new image.
-4. Submit a pull request.
-5. We'll accept your pull request, and github site will update soon (several minutes) after.
-
+This repository was created for use by CDC programs to collaborate on public health surveillance related projects in support of the CDC Surveillance Strategy. Github is not hosted by the CDC, but is used by CDC and its partners to share information and collaborate on software.
 ## Public Domain
 This repository constitutes a work of the United States Government and is not
 subject to domestic copyright protection under 17 USC § 105. This repository is in
