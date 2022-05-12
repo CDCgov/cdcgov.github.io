@@ -1,34 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CDCgov.github.io
 
-## Getting Started
+This repository was created for use by CDC programs to collaborate on public health surveillance related projects in support of the CDC Surveillance Strategy.  Github is not hosted by the CDC, but is used by CDC and its partners to share information and collaborate on software.
 
-First, run the development server:
+## To add an image to your entry...
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+1. Fork this repository.
+2. Create a logo or image for your project. Name it exactly the same name as your repository name (case sensitive!). Put it in the `imgs/` directory.
+3. Commit and push your new image.
+4. Submit a pull request.
+5. We'll accept your pull request, and github site will update soon (several minutes) after.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Public Domain
+This repository constitutes a work of the United States Government and is not
+subject to domestic copyright protection under 17 USC § 105. This repository is in
+the public domain within the United States, and copyright and related rights in
+the work worldwide are waived through the [CC0 1.0 Universal public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/).
+All contributions to this repository will be released under the CC0 dedication. By
+submitting a pull request you are agreeing to comply with this waiver of
+copyright interest.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## License
+The repository utilizes code licensed under the terms of the Apache Software
+License and therefore is licensed under ASL v2 or later.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+This source code in this repository is free: you can redistribute it and/or modify it under
+the terms of the Apache Software License version 2, or (at your option) any
+later version.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+This source code in this repository is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the Apache Software License for more details.
 
-## Learn More
+You should have received a copy of the Apache Software License along with this
+program. If not, see http://www.apache.org/licenses/LICENSE-2.0.html
 
-To learn more about Next.js, take a look at the following resources:
+The source code forked from other open source projects will inherit its license.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Privacy
+This repository contains only non-sensitive, publicly available data and
+information. All material and community participation is covered by the
+Surveillance Platform [Disclaimer](https://github.com/CDCgov/template/blob/master/DISCLAIMER.md)
+and [Code of Conduct](https://github.com/CDCgov/template/blob/master/code-of-conduct.md).
+For more information about CDC's privacy policy, please visit [http://www.cdc.gov/privacy.html](http://www.cdc.gov/privacy.html).
 
-## Deploy on Vercel
+## Contributing
+Anyone is encouraged to contribute to the repository by [forking](https://help.github.com/articles/fork-a-repo)
+and submitting a pull request. (If you are new to GitHub, you might start with a
+[basic tutorial](https://help.github.com/articles/set-up-git).) By contributing
+to this project, you grant a world-wide, royalty-free, perpetual, irrevocable,
+non-exclusive, transferable license to all users under the terms of the
+[Apache Software License v2](http://www.apache.org/licenses/LICENSE-2.0.html) or
+later.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+All comments, messages, pull requests, and other submissions received through
+CDC including this GitHub page are subject to the [Presidential Records Act](http://www.archives.gov/about/laws/presidential-records.html)
+and may be archived. Learn more at [http://www.cdc.gov/other/privacy.html](http://www.cdc.gov/other/privacy.html).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Records
+This repository is not a source of government records, but is a copy to increase
+collaboration and collaborative potential. All government records will be
+published through the [CDC web site](http://www.cdc.gov).
+
+## Notices
+Please refer to [CDC's Template Repository](https://github.com/CDCgov/template)
+for more information about [contributing to this repository](https://github.com/CDCgov/template/blob/master/CONTRIBUTING.md),
+[public domain notices and disclaimers](https://github.com/CDCgov/template/blob/master/DISCLAIMER.md),
+and [code of conduct](https://github.com/CDCgov/template/blob/master/code-of-conduct.md).
