@@ -1,4 +1,3 @@
-// TODO: Jordon: Convert date format from api into something like: (Jan 17th, 2019);
 // TODO: Jordon: Filterable by Alphabetical, Watchers, size, forks, etc.
 // TODO: Jordon: NextJS SSR, Static Site Generation. Instant API results. Revalidate to run periodically.
 // SEE: https://nextjs.org/docs/basic-features/pages
@@ -63,6 +62,10 @@ const Home = () => {
 		setQuery(projects.name);
 	};
 
+	const formatDate = (x) => {
+		return x.substring(0, 10);
+	};
+
 	function classNames(...classes) {
 		return classes.filter(Boolean).join(' ');
 	}
@@ -114,11 +117,9 @@ const Home = () => {
 												<span
 													className={classNames(
 														'absolute inset-y-0 right-0 flex projectCards-center pr-4',
-														active ? 'text-black' : 'text-blue-600',
+														active ? 'text-black' : 'text-blue-700',
 													)}
-												>
-													<CheckIcon className='h-5 w-5' aria-hidden='true' />
-												</span>
+												></span>
 											)}
 										</>
 									)}
@@ -148,12 +149,17 @@ const Home = () => {
 									</div>
 									<div className='mt-6 flex projectCards-center'>
 										<div className='ml-3'>
-											<p className='text-sm font-medium text-gray-800'>{projectCard.full_name}</p>
+											<p className='text-sm font-medium text-gray-800'>{projectCard.forks} Fork/s</p>
 											<div className='flex space-x-1 text-sm text-gray-500'>
-												<p>{projectCard.created_at}</p>
+												<p>{formatDate(projectCard.created_at)}</p>
 												<span aria-hidden='true'> </span>
 												<a href={projectCard.html_url} target='_blank' rel='noreferrer noopener' className='text-black'>
-													View Code
+													<button
+														type='button'
+														className='inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+													>
+														View Code
+													</button>
 												</a>
 											</div>
 										</div>
