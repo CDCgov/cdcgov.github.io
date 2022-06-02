@@ -148,14 +148,17 @@ const Home = () => {
 										<p className='mt-3 text-base text-gray-600'>{projectCard.description}</p>
 									</div>
 									<div className='mt-6 flex projectCards-center'>
-										<div className='ml-3'>
-											<p className='text-sm font-medium text-gray-800'>{projectCard.forks} Fork/s</p>
-											<div className='flex space-x-1 text-sm text-gray-500'>
+										<div className='ml-2'>
+											<div className='flex space-x-3'>
+												<p className='text-sm font-medium text-gray-800'>{projectCard.forks} Forks</p>
+												<p className='text-sm font-medium text-gray-800'>{projectCard.open_issues} Issues</p>
+											</div>
+											<div className='flex space-x-1 text-sm text-gray-500 mt-1'>
 												<p>{formatDate(projectCard.created_at)}</p>
 												<span aria-hidden='true'> </span>
 												<a href={projectCard.html_url} target='_blank' rel='noreferrer noopener' className='text-black'>
 													<button
-														type='button'
+							 							type='button'
 														className='inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
 													>
 														View Code
