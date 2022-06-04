@@ -1,9 +1,10 @@
-// TODO: Jordon: Filterable by Alphabetical, Watchers, size, forks, etc.
+// TODO: Jordon: Filterable, Sortable, by Alphabetical, Watchers, size, forks, etc. Just like the official page.
 // Suggestion, Jordon: Images for projects are a bit redundant? Consumes data, slows client?
+import { SelectorIcon } from '@heroicons/react/solid';
 import TitleHeader from '../components/TitleHeader';
 import { useState } from 'react';
-import { SelectorIcon } from '@heroicons/react/solid';
 import { Combobox } from '@headlessui/react';
+import Head from 'next/head';
 
 console.clear();
 const Home = ({ projects }) => {
@@ -41,6 +42,12 @@ const Home = ({ projects }) => {
 
 	return (
 		<>
+			<Head>
+				<title>FOSS @ CDC</title>
+				<meta name='viewport' content='initial-scale=1.0, width=device-width' />
+				<meta name='description' content="CDC's Open Source Portfolio" />
+			</Head>
+
 			<TitleHeader />
 			{/* Search Component Start */}
 			<Combobox
@@ -148,6 +155,7 @@ const Home = ({ projects }) => {
 	);
 };
 
+// SEE: https://nextjs.org/docs/basic-features/data-fetching/overview
 export async function getStaticProps() {
 	// TODO: Jordon: Make Pages dynamic instead of static so you don't need to maintain.
 	const pages = [1, 2, 3, 4, 5];
