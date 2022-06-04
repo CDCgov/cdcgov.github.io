@@ -1,11 +1,10 @@
 // TODO: Jordon: Filterable by Alphabetical, Watchers, size, forks, etc.
 // SEE: https://nextjs.org/docs/basic-features/pages
 // Suggestion, Jordon: Images for projects are a bit redundant? Consumes data, slows client?
-import axios from 'axios';
 import TitleHeader from '../components/TitleHeader';
 import RateLimit from '../components/rateLimit';
-import { useState, useEffect, useMemo } from 'react';
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
+import { useState } from 'react';
+import { SelectorIcon } from '@heroicons/react/solid';
 import { Combobox } from '@headlessui/react';
 
 console.clear();
@@ -18,33 +17,6 @@ const Home = ({ projects }) => {
 
 	// const [sortBy, setSortBy] = useState('alphabetical');
 	// const [sortOrder, setSortOrder] = useState('ascending');
-
-	// // TODO: Jordon: Fix redundant URL's.
-	// const endpoints = useMemo(
-	// 	() => [
-	// 		'https://api.github.com/users/CDCGov/repos?page=1&per_page=100',
-	// 		'https://api.github.com/users/CDCGov/repos?page=2&per_page=100',
-	// 		'https://api.github.com/users/CDCGov/repos?page=3&per_page=100',
-	// 		'https://api.github.com/users/CDCGov/repos?page=4&per_page=100',
-	// 	],
-	// 	[],
-	// );
-
-	// axios.all(endpoints.map((endpoint) => axios.get(endpoint)));
-
-	// useEffect(() => {
-	// 	axios
-	// 		.all(endpoints.map((endpoint) => axios.get(endpoint)))
-	// 		.catch((error) => {
-	// 			setErrorMessage(error);
-	// 		})
-	// 		.then(
-	// 			axios.spread((...responses) => {
-	// 				// TODO: Jordon: Fix redundancy.
-	// 				setProjects([...responses[0].data, ...responses[1].data, ...responses[2].data, ...responses[3].data]);
-	// 			}),
-	// 		);
-	// }, [endpoints]);
 
 	const filterApiData = !query
 		? projects
@@ -180,32 +152,18 @@ const Home = ({ projects }) => {
 };
 
 export async function getStaticProps() {
-	// TODO: Jordon: Fix redundant URL's.
-	const endpoints = [
-		'https://api.github.com/users/CDCGov/repos?page=1&per_page=100',
-		'https://api.github.com/users/CDCGov/repos?page=2&per_page=100',
-		'https://api.github.com/users/CDCGov/repos?page=3&per_page=100',
-		'https://api.github.com/users/CDCGov/repos?page=4&per_page=100',
-	];
+	// TODO: Jordon: Make Pages dynamic instead of static so you don't need to maintain.
+	const pages = [1, 2, 3, 4, 5];
+	const endpoints = pages.map((page) => `https://api.github.com/users/CDCGov/repos?page=${page}&per_page=100`);
 
-	// TODO: Use axios.
-	const projects = await Promise.all(
-		endpoints.map(async (endpoint) => {
-			const res = await fetch(endpoint);
-			if (!res.ok) {
-				// TODO: Handle error with error component.
-				throw new Error('Rate Limited by GitHub API. Try using a VPN.');
-			}
-			const data = await res.json();
-			return data;
-		}),
-	);
+	// Use axios?
+	const projects = await Promise.all(endpoints.map((endpoint) => fetch(endpoint).then((res) => res.json())));
 
 	return {
 		props: {
 			projects: projects.flat(),
 		},
-		revalidate: 100,
+		revalidate: 300,
 	};
 }
 
