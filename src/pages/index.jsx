@@ -1,5 +1,4 @@
 // TODO: Jordon: Filterable by Alphabetical, Watchers, size, forks, etc.
-// TODO: Jordon: NextJS SSR, Static Site Generation. Instant API results. Revalidate to run periodically.
 // SEE: https://nextjs.org/docs/basic-features/pages
 // Suggestion, Jordon: Images for projects are a bit redundant? Consumes data, slows client?
 import axios from 'axios';
@@ -10,39 +9,42 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { Combobox } from '@headlessui/react';
 
 console.clear();
-const Home = () => {
-	const [projects, setProjects] = useState([]);
+const Home = ({ projects }) => {
+	// const [projects, setProjects] = useState([]);
 	const [errorMessage, setErrorMessage] = useState(null);
 
 	const [query, setQuery] = useState('');
 	const [selectedProject, setSelectedProject] = useState();
 
-	// TODO: Jordon: Fix redundant URL's.
-	const endpoints = useMemo(
-		() => [
-			'https://api.github.com/users/CDCGov/repos?page=1&per_page=100',
-			'https://api.github.com/users/CDCGov/repos?page=2&per_page=100',
-			'https://api.github.com/users/CDCGov/repos?page=3&per_page=100',
-			'https://api.github.com/users/CDCGov/repos?page=4&per_page=100',
-		],
-		[],
-	);
+	// const [sortBy, setSortBy] = useState('alphabetical');
+	// const [sortOrder, setSortOrder] = useState('ascending');
 
-	axios.all(endpoints.map((endpoint) => axios.get(endpoint)));
+	// // TODO: Jordon: Fix redundant URL's.
+	// const endpoints = useMemo(
+	// 	() => [
+	// 		'https://api.github.com/users/CDCGov/repos?page=1&per_page=100',
+	// 		'https://api.github.com/users/CDCGov/repos?page=2&per_page=100',
+	// 		'https://api.github.com/users/CDCGov/repos?page=3&per_page=100',
+	// 		'https://api.github.com/users/CDCGov/repos?page=4&per_page=100',
+	// 	],
+	// 	[],
+	// );
 
-	useEffect(() => {
-		axios
-			.all(endpoints.map((endpoint) => axios.get(endpoint)))
-			.catch((error) => {
-				setErrorMessage(error);
-			})
-			.then(
-				axios.spread((...responses) => {
-					// TODO: Jordon: Fix redundancy.
-					setProjects([...responses[0].data, ...responses[1].data, ...responses[2].data, ...responses[3].data]);
-				}),
-			);
-	}, [endpoints]);
+	// axios.all(endpoints.map((endpoint) => axios.get(endpoint)));
+
+	// useEffect(() => {
+	// 	axios
+	// 		.all(endpoints.map((endpoint) => axios.get(endpoint)))
+	// 		.catch((error) => {
+	// 			setErrorMessage(error);
+	// 		})
+	// 		.then(
+	// 			axios.spread((...responses) => {
+	// 				// TODO: Jordon: Fix redundancy.
+	// 				setProjects([...responses[0].data, ...responses[1].data, ...responses[2].data, ...responses[3].data]);
+	// 			}),
+	// 		);
+	// }, [endpoints]);
 
 	const filterApiData = !query
 		? projects
@@ -73,7 +75,7 @@ const Home = () => {
 	return (
 		<>
 			<TitleHeader />
-			{errorMessage !== null && <RateLimit />}
+			{Error && <p>{errorMessage}</p>}
 			{/* Search Component Start */}
 			<Combobox
 				as='div'
@@ -158,7 +160,7 @@ const Home = () => {
 												<span aria-hidden='true'> </span>
 												<a href={projectCard.html_url} target='_blank' rel='noreferrer noopener' className='text-black'>
 													<button
-							 							type='button'
+														type='button'
 														className='inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
 													>
 														View Code
@@ -176,5 +178,35 @@ const Home = () => {
 		</>
 	);
 };
+
+export async function getStaticProps() {
+	// TODO: Jordon: Fix redundant URL's.
+	const endpoints = [
+		'https://api.github.com/users/CDCGov/repos?page=1&per_page=100',
+		'https://api.github.com/users/CDCGov/repos?page=2&per_page=100',
+		'https://api.github.com/users/CDCGov/repos?page=3&per_page=100',
+		'https://api.github.com/users/CDCGov/repos?page=4&per_page=100',
+	];
+
+	// TODO: Use axios.
+	const projects = await Promise.all(
+		endpoints.map(async (endpoint) => {
+			const res = await fetch(endpoint);
+			if (!res.ok) {
+				// TODO: Handle error with error component.
+				throw new Error('Rate Limited by GitHub API. Try using a VPN.');
+			}
+			const data = await res.json();
+			return data;
+		}),
+	);
+
+	return {
+		props: {
+			projects: projects.flat(),
+		},
+		revalidate: 100,
+	};
+}
 
 export default Home;
