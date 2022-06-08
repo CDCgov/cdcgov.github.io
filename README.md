@@ -1,6 +1,19 @@
 # CDCgov.github.io
 
+<<<<<<< HEAD
 This repository was created for use by CDC programs to collaborate on public health surveillance related projects in support of the CDC Surveillance Strategy. Github is not hosted by the CDC, but is used by CDC and its partners to share information and collaborate on software.
+=======
+This repository was created for use by CDC programs to collaborate on public health surveillance related projects in support of the CDC Surveillance Strategy.  Github is not hosted by the CDC, but is used by CDC and its partners to share information and collaborate on software.
+
+## To add an image to your entry...
+
+1. Fork this repository.
+2. Create a logo or image for your project. Name it exactly the same name as your repository name (case sensitive!). Put it in the `imgs/` directory.
+3. Commit and push your new image.
+4. Submit a pull request.
+5. We'll accept your pull request, and github site will update soon (several minutes) after.
+
+>>>>>>> 3cf706d63dd71c1a5a9071bee905f80e7ab70c19
 ## Public Domain
 This repository constitutes a work of the United States Government and is not
 subject to domestic copyright protection under 17 USC § 105. This repository is in
@@ -57,4 +70,8 @@ published through the [CDC web site](http://www.cdc.gov).
 Please refer to [CDC's Template Repository](https://github.com/CDCgov/template)
 for more information about [contributing to this repository](https://github.com/CDCgov/template/blob/master/CONTRIBUTING.md),
 [public domain notices and disclaimers](https://github.com/CDCgov/template/blob/master/DISCLAIMER.md),
+<<<<<<< HEAD
 and [code of conduct](https://github.com/CDCgov/template/blob/master/code-of-conduct.md).
+=======
+and [code of conduct](https://github.com/CDCgov/template/blob/master/code-of-conduct.md).
+>>>>>>> 3cf706d63dd71c1a5a9071bee905f80e7ab70c19

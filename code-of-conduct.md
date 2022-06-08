@@ -1,5 +1,8 @@
 # Creating a Culture of Innovation
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3cf706d63dd71c1a5a9071bee905f80e7ab70c19
 We aspire to create a culture where people work joyfully, communicate openly
 about things that matter, and provide great services globally. We would like our
 team and communities (both government and private sector) to reflect on
@@ -15,7 +18,10 @@ GSA. We expect every user to follow this code of conduct and the laws and
 policies mentioned above.
 
 ## Be Empowering
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3cf706d63dd71c1a5a9071bee905f80e7ab70c19
 Consider what you can do to encourage and support others. Make room for quieter
 voices to contribute. Offer support and enthusiasm for great ideas. Leverage the
 low cost of experimentation to support your colleagues' ideas, and take care to
@@ -25,6 +31,7 @@ Prioritize access for and input from those who are traditionally excluded from
 the civic process.
 
 ## Rules of Behavior
+<<<<<<< HEAD
 
 - I understand that I must complete security awareness and records management
   training annually in order to comply with the latest security and records
@@ -43,6 +50,24 @@ the civic process.
 
 ## Boundaries
 
+=======
+ * I understand that I must complete security awareness and records management
+   training annually in order to comply with the latest security and records
+   management policies.
+ * I understand that I must also follow the [Rules of Behavior for use of HHS Information Resources](http://www.hhs.gov/ocio/policy/hhs-rob.html)
+ * I understand that I must not use, share, or store any kind of sensitive data
+   (health status, provision or payment of healthcare, PII, etc.) under ANY
+   circumstance.
+ * I will not knowingly conceal, falsify, or remove information.
+ * I understand that I can only use non-sensitive and/or publicly available
+   data.
+ * I understand that all passwords I create to set up accounts need to comply
+   with CDC's password policy.
+ * I understand that the stewards reserves the right to moderate all data at any
+   time.
+
+## Boundaries
+>>>>>>> 3cf706d63dd71c1a5a9071bee905f80e7ab70c19
 Create boundaries to your own behavior and consider how you can create a safe
 space that helps prevent unacceptable behavior by others. We can't list all
 instances of unacceptable behavior, but we can provide examples to help guide
@@ -56,6 +81,7 @@ your responsibility. Problems usually arise when we assume that our way of
 thinking or behavior is the norm for everyone.
 
 ### Here are some examples of unacceptable behavior
+<<<<<<< HEAD
 
 - Negative or offensive remarks based on the protected classes as listed in the
   GSA Anti-harrasment Policy of race, religion, color, sex, national origin,
@@ -79,6 +105,29 @@ thinking or behavior is the norm for everyone.
 
 ## Background
 
+=======
+ * Negative or offensive remarks based on the protected classes as listed in the
+   GSA Anti-harrasment Policy of race, religion, color, sex, national origin,
+   age, disability, genetric information, sexual orientation, gender identity,
+   parental status, maritual status, and political affiliation as well as gender
+   expression, mental illness, socioeconomic status or backgrounds,
+   neuro(a)typicality, physical appearance, body size, or clothing. Consider
+   that calling attention to differences can feel alienating.
+ * Sustained disruption of meetings, talks, or discussions, including chatrooms.
+ * Patronizing language or behavior.
+ * Aggresive behavior, such as unconstructive criticism, providing correction
+   that do not improve the conversation (sometimes referred to as "well
+   actually's"), repeatedly interrupting or talking over someone else, feigning
+   surprise at someone's lack of knowledge or awareness about a topic, or subtle
+   prejudice.
+ * Referring to people in a way that misidentifies their gender and/or rejects
+   the validity of their gender identity; for instance by using incorrect
+   pronouns or forms of address (misgendering).
+ * Retaliating against anyone who files a formal complaint that someone has
+   violated these codes or laws.
+
+## Background
+>>>>>>> 3cf706d63dd71c1a5a9071bee905f80e7ab70c19
 CDC Scientific Clearance is the process of obtaining approvals by appropriate
 CDC officials before a CDC information product is released to the public or
 CDC's external public health partners. Information products that require formal
@@ -92,21 +141,35 @@ others deemed as necessary.
 
 For those individuals within the CDC, adherence to the following policies are
 required:
+<<<<<<< HEAD
 
 - CDC ["Clearance of Information Products Disseminated Outside CDC for Public Use"](http://www.cdc.gov/maso/Policy/PublicUse.pdf)
 - HHS ["Ensuring the Quality of Information Disseminated by HHS agencies"](http://aspe.hhs.gov/infoquality)
+=======
+* CDC ["Clearance of Information Products Disseminated Outside CDC for Public Use"](http://www.cdc.gov/maso/Policy/PublicUse.pdf)
+* HHS ["Ensuring the Quality of Information Disseminated by HHS agencies"](http://aspe.hhs.gov/infoquality)
+>>>>>>> 3cf706d63dd71c1a5a9071bee905f80e7ab70c19
 
 All collaborative materials will be controlled by the rules contained within
 this document. This will allow for the real-time collaboration opportunities
 among CDC employees, CDC contractors and CDC public health partners.
 
 ## Credit
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3cf706d63dd71c1a5a9071bee905f80e7ab70c19
 This code of conduct was mainly adapted from [18F's Code of Conduct](https://github.com/18F/code-of-conduct)
 and the [CDC's Informatics Innovation Unit R&D Lab's code of conduct.](http://www.phiresearchlab.org/?page_id=1715)
 
 ## Relevant Legal Considerations
+<<<<<<< HEAD
 
 - [Laws enforced by the Equal Employment Opportunity Commission](http://www.eeoc.gov/laws/statutes/index.cfm)
 - [Types of discrimination prohibited by law](http://www.eeoc.gov/laws/types)
 - [New and proposed regulations](http://www.eeoc.gov/laws/regulations/index.cfm)
+=======
+* [Laws enforced by the Equal Employment Opportunity Commission](http://www.eeoc.gov/laws/statutes/index.cfm)
+* [Types of discrimination prohibited by law](http://www.eeoc.gov/laws/types)
+* [New and proposed regulations](http://www.eeoc.gov/laws/regulations/index.cfm)
+>>>>>>> 3cf706d63dd71c1a5a9071bee905f80e7ab70c19
