@@ -1,1 +1,0 @@
-// TODO: Jordon: NextJS SSR, Static Site Generation.
