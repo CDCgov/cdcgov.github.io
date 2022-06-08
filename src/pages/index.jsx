@@ -2,27 +2,34 @@
 // Suggestion, Jordon: Images for projects are a bit redundant? Consumes data, slows client?
 import { SelectorIcon } from '@heroicons/react/solid';
 import TitleHeader from '../components/TitleHeader';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Combobox } from '@headlessui/react';
-import Head from 'next/head';
 
-console.clear();
 const Home = ({ projects }) => {
 	const [query, setQuery] = useState('');
 	const [selectedProject, setSelectedProject] = useState();
 
+	// Ideal way to sort alphabetically?
 	// const [sortBy, setSortBy] = useState('alphabetical');
 	// const [sortOrder, setSortOrder] = useState('ascending');
 
-	const filterApiData = !query
-		? projects
-		: projects.filter((projects) => {
-				return projects.name.toLowerCase().includes(query.toLowerCase());
-		  });
+	const filterApiData = useMemo(
+		() =>
+			!query
+				? projects
+				: projects.filter((projects) => {
+						return projects.name.toLowerCase().includes(query.toLowerCase());
+				  }),
+		[query, projects],
+	);
 
-	let projectSearch = projects.filter((projectItem) => {
-		return projectItem.name.toLowerCase().includes(query.toLowerCase());
-	});
+	let projectCards = useMemo(
+		() =>
+			projects.filter((projectItem) => {
+				return projectItem.name.toLowerCase().includes(query.toLowerCase());
+			}),
+		[query, projects],
+	);
 
 	const searchText = (event) => {
 		setQuery(event.target.value);
@@ -42,12 +49,6 @@ const Home = ({ projects }) => {
 
 	return (
 		<>
-			<Head>
-				<title>FOSS @ CDC</title>
-				<meta name='viewport' content='initial-scale=1.0, width=device-width' />
-				<meta name='description' content="CDC's Open Source Portfolio" />
-			</Head>
-
 			<TitleHeader />
 			{/* Search Component Start */}
 			<Combobox
@@ -57,11 +58,9 @@ const Home = ({ projects }) => {
 				className='md:container md:max-w-screen-xl md:mx-auto'
 			>
 				<div className='relative w-3/4 laptop:w-full container sm:max-w-screen-xl mx-auto'>
-					<p className='block text-sm font-medium text-gray-800'>
-						Search by Project Name:
-						<p className='text-sm mb-1 font-medium text-gray-800'>
-							Total Projects: <span>{projects.length}</span>
-						</p>
+					<p className='block text-sm font-medium text-gray-800'>Search by Project Name:</p>
+					<p className='text-sm mb-1 font-medium text-gray-800'>
+						Total Projects: <span>{projects.length}</span>
 					</p>
 					<Combobox.Input
 						className='w-full rounded-sm border border-gray-400 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'
@@ -115,7 +114,7 @@ const Home = ({ projects }) => {
 				<div className='relative max-w-7xl mx-auto'>
 					<div className='mt-4 tablet:mt-7 laptop:mt-10 max-w-xl mx-auto grid gap-6 lg:grid-cols-3 lg:max-w-none'>
 						{/* Card Section Start */}
-						{projectSearch.map((projectCard) => (
+						{projectCards.map((projectCard) => (
 							<div key={projectCard.id} className='flex flex-col rounded-md shadow-md shadow-gray-300 overflow-hidden'>
 								<div className='flex-1 bg-white p-6 flex flex-col justify-between'>
 									<div className='flex-1'>
